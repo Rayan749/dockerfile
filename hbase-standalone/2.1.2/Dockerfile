@@ -13,7 +13,7 @@ ENV VERSION 2.1.2
 ENV DESTINATION /opt/hbase
 
 ADD http://mirrors.ustc.edu.cn/apache/hbase/${VERSION}/hbase-${VERSION}-bin.tar.gz /
-RUN tar -xvf hbase$-{VERSION}-bin.tar.gz 
+RUN tar -xvf hbase-${VERSION}-bin.tar.gz 
 RUN mv /hbase-${VERSION} ${DESTINATION}
 ADD hbase-site.xml /${DESTINATION}/conf/hbase-site.xml
 
