@@ -2,6 +2,7 @@ FROM openjdk:8
 
 # 替换科大源
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+RUN sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get -y install supervisor python-pip
 RUN pip install supervisor-stdout
@@ -11,8 +12,8 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ENV VERSION 2.1.2
 ENV DESTINATION /opt/hbase
 
-ADD http://archive.apache.org/dist/hbase/${VERSION}/hbase-${VERSION}-bin.tar.gz /
-RUN tar -xvf $hbase-{VERSION}-bin.tar.gz 
+ADD http://mirrors.ustc.edu.cn/apache/hbase/${VERSION}/hbase-${VERSION}-bin.tar.gz /
+RUN tar -xvf hbase$-{VERSION}-bin.tar.gz 
 RUN mv /hbase-${VERSION} ${DESTINATION}
 ADD hbase-site.xml /${DESTINATION}/conf/hbase-site.xml
 
